@@ -1,0 +1,153 @@
+
+
+import java.util.Scanner;
+
+public class CoffeeMachine {
+	final static Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) {
+		int water = 400;
+		int milk = 540;
+		int beans = 120;
+		int cups = 9;
+		int money = 550;
+//		System.out.println("The coffee machine has:");
+//		System.out.println(water + " of water");
+//		System.out.println(milk + " of milk");
+//		System.out.println(beans + " of beans");
+//		System.out.println(cups + " of cups");
+//		System.out.println(money + " of money");
+//		System.out.println();
+		action(0, 0, 0, 0, 0);
+	}
+
+	public static void action(int water, int milk, int beans, int cups, int money) {
+		water = 400;
+		milk = 540;
+		beans = 120;
+		cups = 9;
+		money = 550;
+		// System.out.println("Write action (buy, fill, take, remaining, exit)");
+
+		boolean i = true;
+		while (i) {
+			System.out.println("Write action (buy, fill, take, remaining, exit):");
+			String action = sc.next();
+
+			switch (action) {
+			case "buy":
+				System.out.println();
+				System.out.println(
+						"What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
+				String buy1 = sc.next();
+				switch (buy1) {
+				case "back":
+					System.out.println();
+					continue;
+				case "1": // espresso
+					if (water < 250) {
+						System.out.println("Sorry, not enough water!");
+						System.out.println();
+					} else if (beans < 16) {
+						System.out.println("sorry, not enough coffee beans!");
+						System.out.println();
+					} else {
+						water -= 250;
+						beans -= 16;
+						cups -= 1;
+						money += 4;
+						System.out.println("I have enough resources, making you a coffee!");
+						System.out.println();
+					}
+					continue;
+				default:
+					break;
+
+				case "2": // latte
+					if (water < 350) {
+						System.out.println("Sorry, not enough water!");
+						System.out.println();
+					} else if (milk < 75) {
+						System.out.println("Sorry, not enough milk!");
+						System.out.println();
+					} else if (beans < 20) {
+						System.out.println("Sorry, not enough coffee beans!");
+						System.out.println();
+					} else {
+						water -= 350;
+						milk -= 75;
+						beans -= 20;
+						cups -= 1;
+						money += 7;
+						System.out.println("I have enough resources, making you a coffee!");
+						System.out.println();
+					}
+					continue;
+
+				case "3": // cappuccino
+					if (water < 200) {
+						System.out.println("Sorry, not enough water");
+						System.out.println();
+					} else if (milk < 100) {
+						System.out.println("Sorry, not enough milk");
+						System.out.println();
+					} else if (beans < 12) {
+						System.out.println("Sorry, not enough coffee beans");
+						System.out.println();
+					} else {
+						water -= 200;
+						milk -= 100;
+						beans -= 12;
+						cups -= 1;
+						money += 6;
+						System.out.println("I have enough resources, making you a coffee!");
+						System.out.println();
+					}
+					continue;
+
+				}
+
+			case "fill":
+				System.out.println();
+				System.out.println("Write how many ml of water do you want to add: ");
+				water += sc.nextInt();
+				System.out.println("Write how many ml of milk do you want to add:");
+				milk += sc.nextInt();
+				System.out.println("Write how many grams of coffee beans do you want to add:");
+				beans += sc.nextInt();
+				System.out.println("Write how many disposable cups of coffee do you want to add:");
+				cups += sc.nextInt();
+				System.out.println();
+				break;
+			default:
+				break;
+			case "take":
+				System.out.println();
+				System.out.println("I gave you $" + money);
+				money -= money;
+
+				System.out.println();
+				break;
+
+			case "remaining":
+				System.out.println();
+				System.out.println("The coffee machine has:");
+				System.out.println(water + " of water");
+				System.out.println(milk + " of milk");
+				System.out.println(beans + " of coffee beans");
+				System.out.println(cups + " of disposable cups");
+				if (money == 0) {
+					System.out.println(money + " of money");
+				} else {
+					System.out.println("$" + money + " of money");
+				}
+				System.out.println();
+				break;
+			case "exit":
+				i = false;
+				break;
+			}
+
+		}
+
+	}
+}
